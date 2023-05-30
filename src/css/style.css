@@ -1,0 +1,11 @@
+.borderColor{
+  background: linear-gradient(to right, #A11CF3, #D835C5) padding-box,
+              linear-gradient(to right, #A11CF3, #D835C5) border-box;
+  border: 0.5px solid transparent;
+}
+
+.titleDetail{
+  background: linear-gradient(to right, #A11CF3, #D835C5) padding-box,
+              linear-gradient(to right, #A11CF3, #D835C5) border-box;
+  border: 3px solid transparent;
+}

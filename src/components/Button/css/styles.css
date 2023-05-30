@@ -1,0 +1,19 @@
+.borderButton{
+  background: linear-gradient(to right, #A11CF3, #D835C5) padding-box,
+              linear-gradient(to right, #A11CF3, #D835C5) border-box;
+  border: 1.5px solid transparent;
+}
+
+.borderButton:hover{
+  background: linear-gradient(to right, #242424, #242424) padding-box,
+              linear-gradient(to right, #A11CF3, #D835C5) border-box;
+  border: 1.5px solid transparent;
+}
+
+.borderLine {
+  border-left: 1px solid #fff;
+}
+
+.borderButton:hover > .borderLine{
+  border-left: 1px solid #6f6f6f;
+}
