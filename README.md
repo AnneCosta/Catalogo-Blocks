@@ -6,7 +6,7 @@ Projeto de criação de catálogo para o teste da vaga de Front-End da Blocks Re
 ### Ferramentas Utilizadas:
 * React (com Vite)
 * Axios
-* react-infinite-scroll-component (para o scroll infinito)
+* react-infinite-scroll-component (para o scroll infinito) [^1]
 * react-feather (para incluir ícones)
 
 ### Execução
@@ -17,3 +17,6 @@ yarn dev
 ```
 Mas, caso prefira, o projeto também pode ser visualizado a partir do site:
 https://testefront-blocks.vercel.app/
+
+
+[^1]: A funcionalidade de scroll infinito foi removida do projeto momentaneamente

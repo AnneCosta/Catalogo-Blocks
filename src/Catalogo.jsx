@@ -1,4 +1,3 @@
-import InfiniteScroll from "react-infinite-scroll-component"
 import { useEffect, useState } from "react"
 import { X } from 'react-feather'
 import axios from "axios";
@@ -6,26 +5,35 @@ import Button from "./components/Button";
 import Card from "./components/Card"
 import './css/style.css'
 
-let skip = 0;
-const fetchData = (setItems, items) => {
- axios
-   .get(`https://test-candidaturas-front-end.onrender.com/families?skip=${skip}&take=20`)
-   .then((res) => {
-     setItems([...items, ...res.data]);
-     skip = skip + 20;
-   });
-};
+async function fetchData() {
+  try {
+    const response = await axios
+      .get(`https://fakestoreapi.com/products`, {
+        timeout: 5000,
+      })
+    
+    return response.data
+  } catch (err) {
+    if(err.code === 'ECONNABORTED') {
+      console.log('Request timed out')
+    } else {
+      console.log(err);
+    }
+  }
+}
 
 export default function Catalogo() {
   const [items, setItems] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
-  
+
   useEffect(() => {
-    fetchData(setItems, items)
-  }, [])
+    fetchData().then(result => {
+      setItems(result)
+    })
+  }, [items])
 
   return (
-    <>
+    <div className="grid">
       <section className='sticky top-0 z-10 bg-barBackground/90 text-textSec w-full hidden md:flex justify-center'>
           <div className='flex p-4 justify-center items-center'>
             <p>
@@ -50,22 +58,14 @@ export default function Catalogo() {
       </header>
       <main className='container mx-auto py-8 px-2 flex flex-col justify-center'>
         <h2 className='md:text-2xl text-xl pl-2 font-medium text-left pb-2 flex'>Resultados</h2>
-        <section className='flex'>
-          <InfiniteScroll
-          dataLength={items.length}
-          next={() => {
-            fetchData(setItems, items);
-          }}
-          hasMore={true}
-          className='flex flex-wrap  md:justify-normal container mx-auto'
-          >
+        <section>
+          <div className='mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 lg:grid-cols-4 xl:gap-x-8'>
             {items?.map((item, i) => (
-              <section key={i}>
-                <Card key={item.id} image={`https://plugin-storage.nyc3.digitaloceanspaces.com/families/images/${item.id}.jpg`} name={item.details.name} />
+              <section key={i} className="group relative border border-borderCol rounded-lg ">
+                <Card key={item.id} image={item.image} name={item.title} />
               </section>
             ))}
-            
-          </InfiniteScroll>
+          </div>
         </section>
       </main>
       <footer className='bg-[#e9e9e9] p-5 flex flex-col md:justify-center md:flex-row'>
@@ -74,7 +74,6 @@ export default function Catalogo() {
         <a className='p-2' href='#'>Termos de uso</a>
         <a className='p-2' href='#'>Política de privacidade</a>
       </footer>
-      
       <section className={`${isClicked ? 'hidden' : ''} text-center text-textSec bg-barBackground/90 p-8 sticky bottom-0 md:hidden`}>
         <div className='flex justify-center p-2'>
           <button onClick={() => setIsClicked(true)} className='flex justify-center items-center'>Fechar <X className='pl-2' color='#fff' size='25'/> </button>
@@ -86,6 +85,6 @@ export default function Catalogo() {
           <Button />
         </div>
       </section>
-    </>
+    </div>
   )
 }
