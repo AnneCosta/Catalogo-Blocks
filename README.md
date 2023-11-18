@@ -6,8 +6,9 @@ Projeto de criação de catálogo para o teste da vaga de Front-End da Blocks Re
 ### Ferramentas Utilizadas:
 * React (com Vite)
 * Axios
-* react-infinite-scroll-component (para o scroll infinito) [^1]
+* ~~react-infinite-scroll-component (para o scroll infinito)~~ [^1]
 * react-feather (para incluir ícones)
+* TailwindCSS
 
 ### Execução
 Para rodar o projeto localmente, faça o download do repositório e, ao abrir sua IDE na pasta, execute:
